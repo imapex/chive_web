@@ -1,0 +1,49 @@
+.belownormal {
+    color: blue;
+}
+.normal {
+    color: green;
+}
+.abovenormal {
+    color: yellow;
+}
+.high {
+    color: red;
+}
+
+.grey {
+     color: #ccc;
+}
+
+.white {
+     color: #FFF
+}
+
+.imageContainer {
+    float: right;
+}
+
+
+tr:hover {
+   background-color: yellow;
+}
+
+#table tr td:nth-child(3) {
+#    background: #ccc;
+#}
+
+
+#circle { width: 100px; height: 100px; background: red; -moz-border-radius: 50px; -webkit-border-radius: 50px; border-radius: 50px; } /* Cleaner, but slightly less support: use "50%" as value */
+
+.circle_green {
+                width:1%;
+                padding:10px 11px;
+                margin:0 auto;
+                border:2px solid #a1a1a1;
+                border-radius:25px;
+                background-color:green;
+            }
+
+body {
+    padding-top: 65px;
+}
