@@ -1,0 +1,69 @@
+{% extends "base_layout.html" %}
+{% block content %}
+<div class="table-responsive" xmlns="http://www.w3.org/1999/html">
+
+    <h3> LEGEND - Temperature Conditions</h3>
+    <table width="100%" border="0">
+                <tr>
+
+                    <td><IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_RED.gif" alt="Cisco_ACI_Icons_RED" align="left" /></td>
+                        <th align="left">High : TEMP > than 60&degc </th>
+                    <td><IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_YELLOW.gif" alt="Cisco_ACI_Icons_YELLOW" align="left" /></td>
+                       <th align="center">Elevated : TEMP between 48&degc and 60&degc</th>
+                   <td> <IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_GREEN" align="left" /></td>
+                       <th align="right">Normal TEMP < 48&degc </th></th>
+                </tr>
+    </table>
+    <br>
+    <table class="table-striped"border="2" style="...">
+                <thead>
+                <tr>
+                    <th bgcolor=lightgrey >Device</th>
+                    <th bgcolor=lightgrey>Temp</th>
+                    <th bgcolor=lightgrey>Condition</th>
+                    <th bgcolor=lightgrey>Timestamp</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for d in devices.keys() %}
+                    <td >{{d}}</td>
+                    <td >{{devices[d]['temp']}}</td>
+                    <td >{{devices[d]['condition']}}</td>
+                    <td >{{devices[d]['timestamp']}}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <br>
+
+             {% for d in devices.keys() %}
+                   {% set condition = devices[d].condition %}
+                   {% set temp = devices[d].temp %}
+                    {% if condition == 'high' %}
+                        <IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_RED.gif" alt="Cisco_ACI_Icons_RED">
+                        <p>{{d}} :  {{devices[d]['temp']}} &degc </p>
+                        <!--  <ln>{{devices[d]['temp']}} </ln> -->
+                        <br>
+                    {% elif condition == 'elevated' %}
+                        <IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_YELLOW.gif" alt="Cisco_ACI_Icons_YELLOW">
+                        <p>{{d}} :  {{devices[d]['temp']}} &degc </p>
+                        <!--  <ln>{{devices[d]['temp']}} </ln> -->
+                        <br>
+                    {% else %}
+                        <IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_GREEN">
+                        <p>{{d}} :  {{devices[d]['temp']}} &degc </p>
+                        <!--  <ln>{{devices[d]['temp']}} </ln> -->
+                        <br>
+                    {% endif %}
+             {% endfor %}
+        </div>
+
+
+<!-- {% for d in devices.keys() %} -->
+ <!--  <div id="circle"> -->
+ <!-- <div id="text">Text in the circle</div> -->
+ <!-- </div> -->
+
+
+<!-- {% endfor %} -->
+{% endblock %}
