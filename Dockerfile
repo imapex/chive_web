@@ -7,4 +7,4 @@ WORKDIR /app
 
 RUN pip install -r requirements.txt
 
-CMD [ "python", "./agents/chive_web.py" ]
+CMD [ "python", "./chive_web/chive_web.py" ]
