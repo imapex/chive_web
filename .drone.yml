@@ -6,7 +6,7 @@ build:
 
 publish:
     docker:
-        repo: $$DOCKER_USERNAME/chive_app
+        repo: $$DOCKER_USERNAME/chive_web
         tag: latest
         username: $$DOCKER_USERNAME
         password: $$DOCKER_PASSWORD
