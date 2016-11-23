@@ -21,4 +21,4 @@ deploy:
             username: $$MANTL_USERNAME
             password: $$MANTL_PASSWORD
         urls:
-            - https://$$MANTL_CONTROL/marathon/v2/apps/imapex/chive/clintmann/web/restart?force=true
+            - https://$$MANTL_CONTROL/marathon/v2/apps/imapex/chive/$$DOCKER_USERNAME/web/restart?force=true
