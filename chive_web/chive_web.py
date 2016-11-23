@@ -6,6 +6,7 @@ import json
 
 app = Flask(__name__)
 
+
 @app.route('/')
 @app.route('/info')
 def index():
@@ -28,6 +29,6 @@ def index():
         pass
 
 # !flask/bin/python
-#app.run(debug=True, host='0.0.0.0', port=5000)
+# app.run(debug=True, host='0.0.0.0', port=5000)
 
-app.run(debug=True)
+app.run(debug=True, host='0.0.0.0')
