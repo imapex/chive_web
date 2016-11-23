@@ -24,13 +24,13 @@
 
                     <dl>
                         <p> KEY : Temperature Conditions </p>
-                        <dt><IMG HEIGHT="45" WIDTH="30" SRC="/images/Cisco_ACI_Icons_RED.gif" alt="Cisco_ACI_Icons_RED"></dt>
+                        <dt><IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_RED.gif" alt="Cisco_ACI_Icons_RED"></dt>
                         <dd>  - High </dd>
 
-                        <dt><IMG HEIGHT="45" WIDTH="30" SRC="/images/Cisco_ACI_Icons_YELLOW.gif" alt="Cisco_ACI_Icons_YELLOW"></dt>
+                        <dt><IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_YELLOW.gif" alt="Cisco_ACI_Icons_YELLOW"></dt>
                         <dd>  - Elevated </dd>
 
-                        <dt><IMG HEIGHT="45" WIDTH="30" SRC="/images/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_GREEN"></dt>
+                        <dt><IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_GREEN"></dt>
                         <dd>  - Normal </dd>
                     </dl>
 
@@ -80,19 +80,19 @@
                    {% set condition = devices[d].condition %}
                    {% set temp = devices[d].temp %}
                     {% if condition == 'high' %}
-                        <p>{{d}} :  {{devices[d]['temp']}} &degc <IMG HEIGHT="45" WIDTH="30" SRC="/images/Cisco_ACI_Icons_RED.gif" alt="Cisco_ACI_Icons_RED"> </p>
+                        <p>{{d}} :  {{devices[d]['temp']}} &degc <IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_RED.gif" alt="Cisco_ACI_Icons_RED"> </p>
                         <p></p>
                         <!--  <ln>{{devices[d]['temp']}} </ln> -->
                         <br>
                     {% elif condition == 'elevated' %}
-                        <IMG HEIGHT="45" WIDTH="30" SRC="/images/Cisco_ACI_Icons_YELLOW.gif" alt="Cisco_ACI_Icons_YELLOW">
+                        <IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_YELLOW.gif" alt="Cisco_ACI_Icons_YELLOW">
                         <p>{{d}} :  {{devices[d]['temp']}} &degc </p>
                         <!--  <ln>{{devices[d]['temp']}} </ln> -->
                         <br>
                     {% else %}
                         <!-- <p>{{d}} :  {{devices[d]['temp']}} &degc <IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_GREEN"></p> -->
                         <p>{{d}}</p>
-                        <p><IMG HEIGHT="45" WIDTH="30" SRC="/images/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_GREEN"></p>
+                        <p><IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_GREEN"></p>
                         <p>:  {{devices[d]['temp']}} &degc </p>
                         <!--  <ln>{{devices[d]['temp']}} </ln> -->
                         <br>
@@ -119,7 +119,7 @@
                     <p>Drag the image back and forth between the two div elements.</p>
 
                     <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
-                    <img src="/images/Cisco_ACI_Icons_RED.gif" draggable="true" ondragstart="drag(event)" id="drag1" width="30" height="45">
+                    <img src="/static/Cisco_ACI_Icons_RED.gif" draggable="true" ondragstart="drag(event)" id="drag1" width="30" height="45">
                     </div>
 
                     <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
