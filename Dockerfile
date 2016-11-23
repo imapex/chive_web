@@ -1,6 +1,6 @@
 FROM python:2.7-alpine
 MAINTAINER Justin Barksdale "jusbarks@cisco.com"
-EXPOSE 5000
+EXPOSE 80
 ADD . /app
 
 WORKDIR /app
