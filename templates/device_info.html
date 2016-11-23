@@ -1,31 +1,68 @@
 {% extends "base_layout.html" %}
 {% block content %}
-<div class="table-responsive" xmlns="http://www.w3.org/1999/html">
+<div class="table-responsive" xmlns="http://www.w3.org/1999/html"></div>
 
-    <h3> LEGEND - Temperature Conditions</h3>
-    <table width="100%" border="0">
+                        <style>
+                                dl
+                                    {
+                                        width: 300px;
+                                        background: #fff;
+                                        border: 3px solid #000;
+                                        padding: 5px 15px;
+                                    }
+
+                                dt
+                                {
+                                    display: inline;
+                                }
+
+                                dd
+                                {
+                                    display: inline;
+                                }
+                        </style>
+
+                    <dl>
+                        <p> KEY : Temperature Conditions </p>
+                        <dt><IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_RED.gif" alt="Cisco_ACI_Icons_RED"></dt>
+                        <dd>  - High </dd>
+
+                        <dt><IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_YELLOW.gif" alt="Cisco_ACI_Icons_YELLOW"></dt>
+                        <dd>  - Elevated </dd>
+
+                        <dt><IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_GREEN"></dt>
+                        <dd>  - Normal </dd>
+                    </dl>
+
+               <!-- <h3> LEGEND - Temperature Conditions</h3>
+                <table width="100%" border="0">
                 <tr>
 
                     <td><IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_RED.gif" alt="Cisco_ACI_Icons_RED" align="left" /></td>
                         <th align="left">High : TEMP > than 60&degc </th>
                     <td><IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_YELLOW.gif" alt="Cisco_ACI_Icons_YELLOW" align="left" /></td>
                        <th align="center">Elevated : TEMP between 48&degc and 60&degc</th>
-                   <td> <IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_GREEN" align="left" /></td>
+                    <td><IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_GREEN" align="left" /></td>
                        <th align="right">Normal TEMP < 48&degc </th></th>
                 </tr>
-    </table>
-    <br>
-    <table class="table-striped"border="2" style="...">
+                 </table> -->
+
+            <br>
+            <table class="table-striped"border="2" style="...">
                 <thead>
                 <tr>
-                    <th bgcolor=lightgrey >Device</th>
+                    <th bgcolor=lightgrey>Type</th>
+                    <th bgcolor=lightgrey>Device</th>
                     <th bgcolor=lightgrey>Temp</th>
                     <th bgcolor=lightgrey>Condition</th>
                     <th bgcolor=lightgrey>Timestamp</th>
                 </tr>
                 </thead>
+
                 <tbody>
+                <tr>
                 {% for d in devices.keys() %}
+                    <td >{{devices[d]['type']}}</td>
                     <td >{{d}}</td>
                     <td >{{devices[d]['temp']}}</td>
                     <td >{{devices[d]['condition']}}</td>
@@ -34,14 +71,17 @@
                 {% endfor %}
                 </tbody>
             </table>
+
+            <br>
             <br>
 
+            <div id="container">
              {% for d in devices.keys() %}
                    {% set condition = devices[d].condition %}
                    {% set temp = devices[d].temp %}
                     {% if condition == 'high' %}
-                        <IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_RED.gif" alt="Cisco_ACI_Icons_RED">
-                        <p>{{d}} :  {{devices[d]['temp']}} &degc </p>
+                        <p>{{d}} :  {{devices[d]['temp']}} &degc <IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_RED.gif" alt="Cisco_ACI_Icons_RED"> </p>
+                        <p></p>
                         <!--  <ln>{{devices[d]['temp']}} </ln> -->
                         <br>
                     {% elif condition == 'elevated' %}
@@ -50,20 +90,45 @@
                         <!--  <ln>{{devices[d]['temp']}} </ln> -->
                         <br>
                     {% else %}
-                        <IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_GREEN">
-                        <p>{{d}} :  {{devices[d]['temp']}} &degc </p>
+                        <!-- <p>{{d}} :  {{devices[d]['temp']}} &degc <IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_GREEN"></p> -->
+                        <p>{{d}} : <IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_GREEN"> :  {{devices[d]['temp']}} &degc </p>
+                        <p></p>
                         <!--  <ln>{{devices[d]['temp']}} </ln> -->
                         <br>
                     {% endif %}
              {% endfor %}
-        </div>
+             </div>
 
+                        <style>
+                                dl
+                                    {
+                                        width: 300px;
+                                        background: #fff;
+                                        border: 1px solid #000;
+                                        padding: 5px 15px;
+                                    }
 
-<!-- {% for d in devices.keys() %} -->
- <!--  <div id="circle"> -->
- <!-- <div id="text">Text in the circle</div> -->
- <!-- </div> -->
+                                dt, dd
+                                {
+                                    display: inline;
+                                }
+                        </style>
 
+                    <h2>Drag and Drop</h2>
+                    <p>Drag the image back and forth between the two div elements.</p>
 
-<!-- {% endfor %} -->
+                    <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="/static/Cisco_ACI_Icons_RED.gif" draggable="true" ondragstart="drag(event)" id="drag1" width="30" height="45">
+                    </div>
+
+                    <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+           <body ondragover="drag_over(event)" ondrop="drop(event)">
+          <ul>
+          <li id="txt1" draggable="true" ondragstart="drag_start(event)"> Drag this text </li><br>
+          <li id="txt2" draggable="true" ondragstart="drag_start(event)"> Drag me</li>
+         </ul>
+
+  </body>
+
 {% endblock %}
