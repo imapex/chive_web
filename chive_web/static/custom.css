@@ -1,3 +1,4 @@
+
 .belownormal {
     color: blue;
 }
@@ -19,30 +20,49 @@
      color: #FFF
 }
 
+.underline {
+    text-decoration: underline;
+}
+
+#bg {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 50%;
+  height: 50%;
+}
+
+#bg img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  min-width: 30%;
+  min-height: 30%;
+}
+
+
+#container {
+width: 500px;
+height: 300px;
+overflow: hidden;
+border: 3px double #000;
+white-space: nowrap;
+}
+
+#container img {display: inline-block; margin: 0 100px;}
+
 .imageContainer {
     float: right;
 }
 
 
-tr:hover {
-   background-color: yellow;
-}
-
 #table tr td:nth-child(3) {
 #    background: #ccc;
 #}
 
-
-#circle { width: 100px; height: 100px; background: red; -moz-border-radius: 50px; -webkit-border-radius: 50px; border-radius: 50px; } /* Cleaner, but slightly less support: use "50%" as value */
-
-.circle_green {
-                width:1%;
-                padding:10px 11px;
-                margin:0 auto;
-                border:2px solid #a1a1a1;
-                border-radius:25px;
-                background-color:green;
-            }
 
 body {
     padding-top: 65px;
