@@ -6,11 +6,12 @@ import json
 
 app = Flask(__name__)
 
+
 @app.route('/')
 @app.route('/info')
 def index():
 
-    url = 'http://imapex-chive-app.green.browndogtech.com/device'
+    url = 'http://imapex-chive-3pings-app.green.browndogtech.com/device'
 
     headers = {"Content-Type": "application/json"}
 
@@ -27,7 +28,5 @@ def index():
         print "Problem getting data...trying again..."
         pass
 
-# !flask/bin/python
-#app.run(debug=True, host='0.0.0.0', port=5000)
 
-app.run(debug=True)
+app.run(debug=True, host='0.0.0.0', port=80)
