@@ -48,11 +48,11 @@
             <table class="table-striped"border="2" style="...">
                 <thead>
                 <tr>
-                    <th bgcolor=lightgrey>Type</th>
-                    <th bgcolor=lightgrey>Device</th>
-                    <th bgcolor=lightgrey>Temp</th>
-                    <th bgcolor=lightgrey>Condition</th>
-                    <th bgcolor=lightgrey>Timestamp</th>
+                    <th bgcolor=lightgrey>  Type  </th>
+                    <th bgcolor=lightgrey>  Device  </th>
+                    <th bgcolor=lightgrey>  Temp  </th>
+                    <th bgcolor=lightgrey>  Condition  </th>
+                    <th bgcolor=lightgrey>  Timestamp  </th>
                 </tr>
                 </thead>
 
@@ -77,20 +77,22 @@
                    {% set condition = devices[d].condition %}
                    {% set temp = devices[d].temp %}
                     {% if condition == 'high' %}
-                        <p>{{d}} :  {{devices[d]['temp']}} &degc <IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_RED.gif" alt="Cisco_ACI_Icons_RED"> </p>
-                        <p></p>
+                        <p>   {{d}}   </p>
+                        <p><IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_RED.gif" alt="Cisco_ACI_Icons_RED"> </p>
+                        <p>  {{devices[d]['temp']}} &degc </p>
                         <!--  <ln>{{devices[d]['temp']}} </ln> -->
                         <br>
                     {% elif condition == 'elevated' %}
+                        <p>   {{d}}   </p>
                         <IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_YELLOW">
-                        <p>{{d}} :  {{devices[d]['temp']}} &degc </p>
+                        <p>   {{devices[d]['temp']}} &degc </p>
                         <!--  <ln>{{devices[d]['temp']}} </ln> -->
                         <br>
                     {% else %}
                         <!-- <p>{{d}} :  {{devices[d]['temp']}} &degc <IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_GREEN"></p> -->
-                        <p>{{d}}</p>
+                        <p>   {{d}}   </p>
                         <p><IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_GREEN"></p>
-                        <p>:  {{devices[d]['temp']}} &degc </p>
+                        <p>  {{devices[d]['temp']}} &degc </p>
                         <!--  <ln>{{devices[d]['temp']}} </ln> -->
                         <br>
                     {% endif %}
