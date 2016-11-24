@@ -48,22 +48,22 @@
             <table class="table-striped"border="2" style="...">
                 <thead>
                 <tr>
-                    <th bgcolor=lightgrey>  Type  </th>
-                    <th bgcolor=lightgrey>  Device  </th>
-                    <th bgcolor=lightgrey>  Temp  </th>
-                    <th bgcolor=lightgrey>  Condition  </th>
-                    <th bgcolor=lightgrey>  Timestamp  </th>
+                    <th bgcolor=lightgrey align="center">  Type  </th>
+                    <th bgcolor=lightgrey align="center">  Device  </th>
+                    <th bgcolor=lightgrey align="center">  Temp  </th>
+                    <th bgcolor=lightgrey align="center">  Condition  </th>
+                    <th bgcolor=lightgrey align="center">  Timestamp  </th>
                 </tr>
                 </thead>
 
                 <tbody>
                 <tr>
                 {% for d in devices.keys() %}
-                    <td > {{devices[d]['type']}} </td>
-                    <td > {{d}} </td>
-                    <td > {{devices[d]['temp']}} </td>
-                    <td > {{devices[d]['condition']}} </td>
-                    <td > {{devices[d]['timestamp']}} </td>
+                    <td align="center">  {{devices[d]['type']}}  </td>
+                    <td align="center">  {{d}} </td>
+                    <td align="center">  {{devices[d]['temp']}}  </td>
+                    <td align="center">  {{devices[d]['condition']}}  </td>
+                    <td align="center">  {{devices[d]['timestamp']}}  </td>
                 </tr>
                 {% endfor %}
                 </tbody>
@@ -77,22 +77,22 @@
                    {% set condition = devices[d].condition %}
                    {% set temp = devices[d].temp %}
                     {% if condition == 'high' %}
-                        <p>   {{d}}   </p>
+                        <p></p>
                         <p><IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_RED.gif" alt="Cisco_ACI_Icons_RED"> </p>
-                        <p>  {{devices[d]['temp']}} &degc </p>
+                        <p> {{d}} : {{devices[d]['temp']}} &degc </p>
                         <!--  <ln>{{devices[d]['temp']}} </ln> -->
                         <br>
                     {% elif condition == 'elevated' %}
-                        <p>   {{d}}   </p>
+                        <p></p>
                         <IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_YELLOW">
-                        <p>   {{devices[d]['temp']}} &degc </p>
+                        <p> {{d}} : {{devices[d]['temp']}} &degc </p>
                         <!--  <ln>{{devices[d]['temp']}} </ln> -->
                         <br>
                     {% else %}
                         <!-- <p>{{d}} :  {{devices[d]['temp']}} &degc <IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_GREEN"></p> -->
-                        <p>   {{d}}   </p>
+                        <p></p>
                         <p><IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_GREEN"></p>
-                        <p>  {{devices[d]['temp']}} &degc </p>
+                        <p> {{d}} : {{devices[d]['temp']}} &degc </p>
                         <!--  <ln>{{devices[d]['temp']}} </ln> -->
                         <br>
                     {% endif %}
