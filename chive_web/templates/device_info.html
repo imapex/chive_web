@@ -45,7 +45,7 @@
                  </table> -->
 
             <br>
-            <table class="table-striped"border="2" cellpadding="10" style="...">
+            <table class="table-striped"border="2" cellpadding="15" style="...">
                 <thead>
                 <tr>
                     <th bgcolor=lightgrey align="center">Type</th>
@@ -59,11 +59,11 @@
                 <tbody>
                 <tr>
                 {% for d in devices.keys() %}
-                    <td align="center">  {{devices[d]['type']}}  </td>
-                    <td align="center">  {{d}} </td>
-                    <td align="center">  {{devices[d]['temp']}}  </td>
-                    <td align="center">  {{devices[d]['condition']}}  </td>
-                    <td align="center">  {{devices[d]['timestamp']}}  </td>
+                    <td align="center">{{devices[d]['type']}}</td>
+                    <td align="center">{{d}}</td>
+                    <td align="center">{{devices[d]['temp']}}</td>
+                    <td align="center">{{devices[d]['condition']}}</td>
+                    <td align="center">{{devices[d]['timestamp']}}</td>
                 </tr>
                 {% endfor %}
                 </tbody>
@@ -77,12 +77,12 @@
                    {% set condition = devices[d].condition %}
                    {% set temp = devices[d].temp %}
                     {% if condition == 'high' %}
-                        <p> </p>
+                        <p></p>
                         <p><IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_RED.gif" alt="Cisco_ACI_Icons_RED"> {{d}} : {{devices[d]['temp']}} &degc </p>
                         <!--  <ln>{{devices[d]['temp']}} </ln> -->
                         <br>
                     {% elif condition == 'elevated' %}
-
+                        <p></p>
                         <p> <IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_YELLOW">{{d}} : {{devices[d]['temp']}} &degc </p>
                         <!--  <ln>{{devices[d]['temp']}} </ln> -->
                         <br>
