@@ -69,19 +69,19 @@
                    {% set temp = devices[d].temp %}
                     {% if condition == 'high' %}
                         <p></p>
-                        <p><IMG id=red HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_RED.gif" alt="Cisco_ACI_Icons_RED">{{d}} : {{devices[d]['temp']}}&degc   </p>
+                        <p><IMG id=red HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_RED.gif" alt="Cisco_ACI_Icons_RED"><b>{{d}} : <font color="red">{{devices[d]['temp']}}&degc</font></b> </p>
                         <!--  <ln>{{devices[d]['temp']}} </ln> -->
                         <br>
                     {% elif condition == 'elevated' %}
                         <p></p>
-                        <p><IMG id=yellow HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_YELLOW">{{d}} : {{devices[d]['temp']}}&degc   </p>
+                        <p><IMG id=yellow HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_YELLOW"><b>{{d}} : <font color="#ffce00">{{devices[d]['temp']}}&degc</font></b> </p>
                         <!--  <ln>{{devices[d]['temp']}} </ln> -->
                         <br>
                     {% else %}
                         <!-- <p>{{d}} :  {{devices[d]['temp']}} &degc <IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_GREEN"></p> -->
                         <p></p>
                         <div draggable="true">
-                        <p><IMG id="green" HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_GREEN">{{d}} : {{devices[d]['temp']}}&degc   </p>
+                        <p><IMG id="green" HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_GREEN"><b>{{d}} : <font color="green">{{devices[d]['temp']}}&degc</font></b>   </p>
                         <!--  <ln>{{devices[d]['temp']}} </ln> -->
                         </div>
 
@@ -91,35 +91,8 @@
              </div>
 
 
-<!-- test canvas drag drop stuff -->
-             <div id="testdrag">
-             {% for d in devices.keys() %}
-                   {% set condition = devices[d].condition %}
-                   {% set temp = devices[d].temp %}
-                    {% if condition == 'high' %}
-                        <p></p>
-                        <div draggable="true"  id="reddrag"  ondragstart="drag(event)">
-                        <p><IMG id=red HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_RED.gif" alt="Cisco_ACI_Icons_RED">{{d}} : {{devices[d]['temp']}}&degc   </p>
-                        <!--  <ln>{{devices[d]['temp']}} </ln> -->
-                        <br>
-                    {% elif condition == 'elevated' %}
-                        <p></p>
-                        <div draggable="true"  id="yellowdrag"  ondragstart="drag(event)">
-                        <p><IMG id=yellow HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_YELLOW">{{d}} : {{devices[d]['temp']}}&degc   </p>
-                        <!--  <ln>{{devices[d]['temp']}} </ln> -->
-                        <br>
-                    {% else %}
-                        <!-- <p>{{d}} :  {{devices[d]['temp']}} &degc <IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_GREEN"></p> -->
-                        <p></p>
-                        <div draggable="true"  id="greendrag"  ondragstart="drag(event)">
-                        <p><IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_GREEN">{{d}} : {{devices[d]['temp']}}&degc   </p>
-                        <!--  <ln>{{devices[d]['temp']}} </ln> -->
-                        </div>
 
-                    {% endif %}
 
-             {% endfor %}
-             </div>
 
   </body>
 
