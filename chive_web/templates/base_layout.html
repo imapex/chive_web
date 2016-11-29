@@ -1,5 +1,6 @@
+<head xmlns="http://www.w3.org/1999/html">
 
-<head>
+
     <title>{% block title %}{{ title }}{% endblock %}</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -9,6 +10,7 @@
     <!--CSS customizations-->
     <link rel="stylesheet" type="text/css" href="/static/custom.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
     <!-- this script is what changes background color in table row -->
     <script>
           $(document).ready(function(){
@@ -24,6 +26,18 @@
           td { padding : 3px; }
      </style>
 
+
+
+    <style>
+    #div1, #div2 {
+        float: absolute;
+        width: 300px;
+        height: 400px;
+        margin: 10px;
+        padding: 10px;
+        border: 1px  double #000;   <!-- solid black; -->
+    }
+    </style>
    <style>
     li
     {
@@ -37,7 +51,122 @@
     }
     </style>
 
+ 
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+ 
 
+
+<!-- this is test draggable code below -->
+
+    <style>
+     .draggable { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 0 10px 10px 0; }
+     #draggable, #draggable2 { margin-bottom:20px; }
+     #draggable { cursor: move; }
+     #draggable2 { cursor: e-resize; }
+     #containment-wrapper { width: 700px; height:500px; background: '/static/grid.gif'; border:2px solid #ccc; padding: 10px; }
+     h3 { clear: left; }
+    </style>
+
+
+    <style>
+    .draggable { width: 100px; height: 100px; padding: 0.5em; }
+    </style>
+
+    <script>
+    $(function() {
+    $("[id=draggable]").draggable()
+    });
+     //
+    var positions = JSON.parse(localStorage.positions || "{}");
+    $(function () {
+    var d = $("[id=draggable]").attr("id", function (i) {
+        return "draggable_" + i
+    })
+    $.each(positions, function (id, pos) {
+        $("#" + id).css(pos)
+    })
+
+    d.draggable({
+        containment: "#containment-wrapper",
+        scroll: false,
+        stop: function (event, ui) {
+            positions[this.id] = ui.position
+            localStorage.positions = JSON.stringify(positions)
+        }
+
+    });
+});
+
+
+    </script>
+
+
+<!--<textarea class="localstorage"></textarea>
+<button class="clear">Clear localStorage</button>
+<button class="empty">Empty localStorage</button>-->
+<!--
+    <script>
+
+    (function() {
+
+  // Grab the image position
+   var demo = document.querySelector('.localstorage');
+
+
+  // localStorage feature detect
+  function supportsLocalStorage() {
+    return typeof(Storage)!== 'undefined';
+  }
+
+  // Run the detection with inverted expression
+  if (!supportsLocalStorage()) {
+
+    // Change the value to inform the user of no support
+    demo.value = 'No HTML5 localStorage support, soz.';
+
+  } else {
+
+    // Try this
+    try {
+
+      // Set the interval and autosave every second
+      setInterval(function() {
+        localStorage.setItem('autosave', demo.value);
+      }, 1000);
+
+    } catch (e) {
+
+      // If any errors, catch and alert the user
+      if (e == QUOTA_EXCEEDED_ERR) {
+        alert('Quota exceeded!');
+      }
+    }
+
+    // If there is data available
+    if (localStorage.getItem('autosave')) {
+
+      // Retrieve the item
+      demo.value = localStorage.getItem('autosave');
+    }
+
+    // Clear button, onclick handler
+    document.querySelector('.clear').onclick = function() {
+      demo.value = '';
+      localStorage.removeItem('autosave');
+    };
+
+    // Empty button, onclick handler
+    document.querySelector('.empty').onclick = function() {
+      demo.value = '';
+      localStorage.clear();
+    };
+
+  }
+
+})();
+</script>
+-->
 </head>
 <html>
 
@@ -58,7 +187,10 @@
 <div class="container-fluid">
     {% block content %}{% endblock %}
 </div>
-<body>
- <canvas id="tutorial" width="500" height="500"></canvas>
+<body >
+
+
+
+
 </body>
 </html>

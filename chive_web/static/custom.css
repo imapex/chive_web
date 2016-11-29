@@ -1,3 +1,59 @@
+.draggable {
+      width: 200px;
+      height: 200px;
+      padding: 0.5em;
+      float: left;
+      margin: 0 10px 10px 0;
+      cursor:move;
+  }
+  .draggable, a {
+      cursor:move;
+  }
+  #draggable, #draggable2 {
+      margin-bottom:20px;
+      cursor:move;
+  }
+  #draggable {
+      cursor: move;
+  }
+  #draggable2 {
+      cursor: e-resize;
+  }
+  #containment-wrapper {
+      width: 700px;
+      height:500px;
+      border:2px solid #ccc;
+      padding: 5px;
+      background: url(/static/grid.gif) center no-repeat;
+      background-size: 650px;
+  }
+  h3 {
+      clear: left;
+  }
+
+
+
+
+.belownormal {
+    color: blue;
+}
+.normal {
+    color: green;
+}
+.abovenormal {
+    color: yellow;
+}
+.high {
+    color: red;
+}
+
+.grey {
+     color: #ccc;
+}
+
+.white {
+     color: #FFF
+}
 
 .underline {
     text-decoration: underline;

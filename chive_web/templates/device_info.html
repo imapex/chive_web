@@ -29,9 +29,31 @@
                         <dt><IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_RED.gif" alt="Cisco_ACI_Icons_RED"><text>  HIGH      |     </text><IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_YELLOW.gif" alt="Cisco_ACI_Icons_YELLOW">    ELEVATED  |  <IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_GREEN">    NORMAL </dt>
                         <p></p>
                         <dt align="left"><font color="red">60&degc or higher</font> | <font color="#ffce00">59&degc to   49&degc</font> | <font color="green">48&degc or lower</font> </dt>
+
+<!--
+                        <dt> High </dt>
+                        <dd>    : 60&degc or > </dd>
+                        <p></p>
+                        <dt><IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_YELLOW.gif" alt="Cisco_ACI_Icons_YELLOW"></dt>
+                        <dt> Elevated </dt>
+                        <dd>    : between 49&degc and 59&degc </dd>
+                        <p></p>
+                        <dt><IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_GREEN"></dt>
+                        <dt> Normal </dt>
+                        <dd>    : 48&degc or lower</dd> -->
                     </dl>
                     </div>
-
+               <!-- <h3> LEGEND - Temperature Conditions</h3>
+                <table width="100%" border="0">
+                <tr>
+                    <td><IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_RED.gif" alt="Cisco_ACI_Icons_RED" align="left" /></td>
+                        <th align="left">High : TEMP > than 60&degc </th>
+                    <td><IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_YELLOW.gif" alt="Cisco_ACI_Icons_YELLOW" align="left" /></td>
+                       <th align="center">Elevated : TEMP between 48&degc and 60&degc</th>
+                    <td><IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_GREEN" align="left" /></td>
+                       <th align="right">Normal TEMP < 48&degc </th></th>
+                </tr>
+                 </table> -->
 
             <br>
             <div id="table">
@@ -71,12 +93,10 @@
                         <p></p>
                         <p><IMG id=red HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_RED.gif" alt="Cisco_ACI_Icons_RED"><b>{{d}} : <font color="red">{{devices[d]['temp']}}&degc</font></b> </p>
                         <!--  <ln>{{devices[d]['temp']}} </ln> -->
-                        <br>
                     {% elif condition == 'elevated' %}
                         <p></p>
-                        <p><IMG id=yellow HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_YELLOW"><b>{{d}} : <font color="#ffce00">{{devices[d]['temp']}}&degc</font></b> </p>
+                        <p><IMG id=yellow HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_YELLOW.gif" alt="Cisco_ACI_Icons_YELLOW"><b>{{d}} : <font color="#ffce00">{{devices[d]['temp']}}&degc</font></b> </p>
                         <!--  <ln>{{devices[d]['temp']}} </ln> -->
-                        <br>
                     {% else %}
                         <!-- <p>{{d}} :  {{devices[d]['temp']}} &degc <IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_GREEN"></p> -->
                         <p></p>
@@ -91,9 +111,44 @@
              </div>
 
 
+<!-- test canvas drag drop stuff -->
+             <br>
+             <p><b>DATACENTER FLOOR LAYOUT - drag icons into position</p>
 
+             <div id="containment-wrapper" class="localstorage">
+             {% for d in devices.keys() %}
+                   {% set condition = devices[d].condition %}
+                   {% set temp = devices[d].temp %}
+                   {% set dev = devices[d] %}
+                    {% if condition == 'high' %}
+                        <p></p>
+                        <div id="draggable" class="ui-widget-content draggable">
+                        <p><IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_RED.gif" alt="Cisco_ACI_Icons_RED">{{d}} : {{devices[d]['temp']}}&degc</p>
+                        <!--  <ln>{{devices[d]['temp']}} </ln> -->
+                            </div>
+                    {% elif condition == 'elevated' %}
+                        <p></p>
+                        <div id="draggable" class="ui-widget-content draggable">
+                        <p><IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_YELLOW.gif" alt="Cisco_ACI_Icons_YELLOW">{{d}} : {{devices[d]['temp']}}&degc</p>
+                        <!--  <ln>{{devices[d]['temp']}} </ln> -->
+                            </div>
+                    {% else %}
+                        <!-- <p>{{d}} :  {{devices[d]['temp']}} &degc <IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_GREEN"></p> -->
+                        <p></p>
+                        <div id="draggable" class="ui-widget-content draggable">
+                        <p><IMG align="center" HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_GREEN"><b> {{devices[d]['temp']}}&degc</b></p>
+                        <!--  <ln>{{devices[d]['temp']}} </ln> -->
+                        <p><b>{{d}}</b></p>
+                        </div>
 
+                    {% endif %}
 
-  </body>
+             {% endfor %}
+
+             </div>
+<!--
+<button class="clear">Clear localStorage</button>
+<button class="empty">Empty localStorage</button>
+-->
 
 {% endblock %}
