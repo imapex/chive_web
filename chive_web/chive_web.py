@@ -11,7 +11,7 @@ app = Flask(__name__)
 @app.route('/info')
 def index():
 
-    url = 'http://imapex-chive-clintmann-app.green.browndogtech.com/device'
+    url = 'http://127.0.0.1/device'
 
     headers = {"Content-Type": "application/json"}
 
@@ -29,4 +29,4 @@ def index():
         pass
 
 
-app.run(debug=True, host='0.0.0.0', port=80)
+app.run(debug=True, host='0.0.0.0', port=5001)

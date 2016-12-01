@@ -10,7 +10,7 @@ app = Flask(__name__)
 @app.route('/info')
 def index():
 
-    url = '127.0.0.1/device'
+    url = 'imapex-chive-3pings-app.green.browndogtech.com/device'
 
     headers = {"Content-Type": "application/json"}
 
