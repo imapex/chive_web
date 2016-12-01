@@ -1,6 +1,14 @@
-FROM python:2.7-alpine
+FROM hypriot/rpi-alpine-scratch
 MAINTAINER Justin Barksdale "jusbarks@cisco.com"
+
 EXPOSE 5001
+
+RUN apk add --update \
+    python \
+    py-pip \
+
+  && rm -rf /var/cache/apk/*
+
 ADD . /app
 
 WORKDIR /app
