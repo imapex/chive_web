@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from flask import Flask, render_template, url_for
+from flask import Flask
+from flask import render_template
 import requests
 import json
 
@@ -10,7 +11,7 @@ app = Flask(__name__)
 @app.route('/info')
 def index():
 
-    url = '127.0.0.1/device'
+    url = 'http://imapex-chive-clintmann-app.green.browndogtech.com/device'
 
     headers = {"Content-Type": "application/json"}
 
@@ -20,7 +21,7 @@ def index():
         # put the data in JSON format
         devices = json.loads(response.text)
         # render data to webpage
-        return render_template('dragdrop.html',
+        return render_template('device_info.html',
                                title='CHIVE : Cisco Heat Indication & Visualization Engine', devices=devices)
 
     except:
@@ -28,4 +29,4 @@ def index():
         pass
 
 
-app.run(debug=True, host='0.0.0.0', port=5001)
+app.run(debug=True, host='0.0.0.0', port=80)
