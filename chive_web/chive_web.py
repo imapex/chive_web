@@ -7,13 +7,13 @@ import json
 
 app = Flask(__name__)
 
-chive_app = "chive_app"
+
 
 @app.route('/')
 @app.route('/info')
 def index():
 
-    url = 'http://' + chive_app + '/device'
+    url = 'http://' + 'chive_app' + '/device'
 
     headers = {"Content-Type": "application/json"}
 
