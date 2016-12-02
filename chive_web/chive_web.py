@@ -12,7 +12,7 @@ app = Flask(__name__)
 def index():
 
     # url = 'http://' + os.environ['APP_PORT_5000_TCP_ADDR'] + '/device'
-    url = 'http://http://imapex-chive-3pings-web.green.browndogtech.com//device'
+    url = 'http://http://imapex-chive-3pings-web.green.browndogtech.com/device'
 
     headers = {"Content-Type": "application/json"}
 
