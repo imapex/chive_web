@@ -3,7 +3,9 @@ from flask import Flask
 from flask import render_template
 import requests
 import json
+import os
 
+chive_app_ip = os.environ('APP_PORT_5000_TCP_ADDR')
 app = Flask(__name__)
 
 
@@ -11,7 +13,7 @@ app = Flask(__name__)
 @app.route('/info')
 def index():
 
-    url = 'http://chive_app:5000/device'
+    url = 'http://' + chive_app_ip + ':5000/device'
 
     headers = {"Content-Type": "application/json"}
 
