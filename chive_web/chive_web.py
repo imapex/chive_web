@@ -11,7 +11,7 @@ app = Flask(__name__)
 @app.route('/info')
 def index():
 
-    url = 'http://' + os.environ['APP_PORT_5000_TCP_ADDR'] + '127.0.0.1/device'
+    url = 'http://' + os.environ['APP_PORT_5000_TCP_ADDR'] + '/device'
 
     headers = {"Content-Type": "application/json"}
 
