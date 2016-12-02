@@ -3,6 +3,7 @@ from flask import Flask
 from flask import render_template
 import requests
 import json
+import os
 
 app = Flask(__name__)
 
@@ -11,7 +12,7 @@ app = Flask(__name__)
 @app.route('/info')
 def index():
 
-    url = 'http://imapex-chive-clintmann-app.green.browndogtech.com/device'
+    url = 'http://' + os.environ['APP_PORT_5000_TCP_ADDR'] + '/device'
 
     headers = {"Content-Type": "application/json"}
 
