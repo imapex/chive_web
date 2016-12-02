@@ -5,7 +5,7 @@ import requests
 import json
 import os
 
-chive_app_ip = os.environ('APP_PORT_5000_TCP_ADDR')
+chive_app_ip = os.environ['APP_PORT_5000_TCP_ADDR']
 app = Flask(__name__)
 
 
