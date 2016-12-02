@@ -3,10 +3,8 @@ from flask import Flask
 from flask import render_template
 import requests
 import json
-# import os
 
 app = Flask(__name__)
-
 
 
 @app.route('/')

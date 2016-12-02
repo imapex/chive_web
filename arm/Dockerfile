@@ -1,7 +1,7 @@
 FROM hypriot/rpi-alpine-scratch
 MAINTAINER Justin Barksdale "jusbarks@cisco.com"
 
-EXPOSE 5001
+EXPOSE 8080
 
 RUN apk add --update \
     python \
