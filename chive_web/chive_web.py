@@ -7,7 +7,7 @@ import os
 
 app = Flask(__name__)
 
-chive_app = os.environ['APP_PORT_5000_TCP_ADDR']
+chive_app = "chive_app"
 
 @app.route('/')
 @app.route('/info')
