@@ -11,7 +11,7 @@ app = Flask(__name__)
 @app.route('/info')
 def index():
 
-    url = 'http://chive_app:5000/device'
+    url = 'http://172.17.0.2:5000/device'
 
     headers = {"Content-Type": "application/json"}
 
