@@ -7,12 +7,13 @@ import os
 
 app = Flask(__name__)
 
+chive_app = os.environ['APP_PORT_5000_TCP_ADDR']
 
 @app.route('/')
 @app.route('/info')
 def index():
 
-    url = 'http://' + os.environ['APP_PORT_5000_TCP_ADDR'] + '/device'
+    url = 'http://' + chive_app + '/device'
 
     headers = {"Content-Type": "application/json"}
 
