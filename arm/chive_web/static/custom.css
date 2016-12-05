@@ -1,0 +1,116 @@
+.draggable {
+      width: 200px;
+      height: 200px;
+      padding: 0.5em;
+      float: left;
+      margin: 0 10px 10px 0;
+      cursor:move;
+  }
+  .draggable, a {
+      cursor:move;
+  }
+  #draggable, #draggable2 {
+      margin-bottom:20px;
+      cursor:move;
+  }
+  #draggable {
+      cursor: move;
+  }
+  #draggable2 {
+      cursor: e-resize;
+  }
+  #containment-wrapper {
+      width: 700px;
+      height:500px;
+      border:2px solid #ccc;
+      padding: 5px;
+      background: url(/static/grid.gif) center no-repeat;
+      background-size: 650px;
+  }
+  h3 {
+      clear: left;
+  }
+
+
+
+
+.belownormal {
+    color: blue;
+}
+.normal {
+    color: green;
+}
+.abovenormal {
+    color: yellow;
+}
+.high {
+    color: red;
+}
+
+.grey {
+     color: #ccc;
+}
+
+.white {
+     color: #FFF
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+#bg {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 50%;
+  height: 50%;
+}
+
+#bg img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  min-width: 30%;
+  min-height: 30%;
+}
+
+
+#container {
+width: 200px;
+height: 250px;
+overflow: auto;
+border: 3px double #000;
+white-space: nowrap;
+float:center;
+overflow: hidden;
+}
+
+#container img {align: left; display: inline-block; margin: 0 10px;}
+
+#wrapper {
+    width: 500px;
+    border: 1px solid black;
+    overflow: hidden; /* add this to contain floated children */
+}
+#first {
+    width: 500px;
+    float:left; /* add this */
+    overflow: auto;
+}
+#second {
+    border: 1px solid green;
+    float: left; /* add this */
+}
+
+#table tr td:nth-child(3) {
+#    background: #ccc;
+#}
+
+
+body {
+    padding-top: 65px;
+}

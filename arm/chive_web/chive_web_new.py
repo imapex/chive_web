@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
-from flask import Flask
-from flask import render_template
+from flask import Flask, render_template, url_for
 import requests
 import json
-import os
 
-chive_app_ip = os.environ['APP_PORT_5000_TCP_ADDR']
 app = Flask(__name__)
 
 
@@ -13,7 +10,7 @@ app = Flask(__name__)
 @app.route('/info')
 def index():
 
-    url = 'http://' + chive_app_ip + ':5000/device'
+    url = 'imapex-chive-3pings-app.green.browndogtech.com/device'
 
     headers = {"Content-Type": "application/json"}
 
@@ -23,7 +20,7 @@ def index():
         # put the data in JSON format
         devices = json.loads(response.text)
         # render data to webpage
-        return render_template('device_info.html',
+        return render_template('dragdrop.html',
                                title='CHIVE : Cisco Heat Indication & Visualization Engine', devices=devices)
 
     except:
@@ -31,4 +28,4 @@ def index():
         pass
 
 
-app.run(debug=True, host='0.0.0.0', port=8080)
+app.run(debug=True, host='0.0.0.0', port=5001)
