@@ -232,7 +232,7 @@ only screen and (max-width: 760px),
 }
 
 .bgrepeat{
-    background: url("../static/grid.gif");
+    background: url("/static/grid.gif");
     background-repeat: repeat-2;
     /*width:200px;*/
     width:100%;
