@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>CHIVE UI 2.0</title>
+<!-- Refresh every 30 seconds -->
+<!--<meta http-equiv="refresh" content="30">-->
+<!-- link to Google Fonts -->
+	<link href="static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="static/css/styles.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Orbitron|Roboto" rel="stylesheet">
+
+	</head>
+<body>
+<!-- NAVIGATION BAR -->
+ <header>
+ 	<nav id="header-nav" class="navbar navbar-default">
+ 		<div class="container">
+    		<div class="navbar-header">
+         		<a href="index.html" class="pull-left visible-md visible-lg">
+         		<div class="glyphicon glyphicon-fire"></div>
+          		</a>  
+
+        		<div class="navbar-brand">
+          			<a href="index.html"><h1>C H I V E</h1></a>
+          			<p>
+          			<span>Cisco Heat Indication & Visualization Explorer</span>
+          			</p>
+				</div><!-- .navbar-brand -->
+
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsable-nav" aria-expanded="false">
+        			<span class="sr-only">Toggle navigation</span>
+        			<span class="icon-bar"></span>
+        			<span class="icon-bar"></span>
+        			<span class="icon-bar"></span>
+      			</button>
+			</div><!-- .navbar-header -->
+
+		<div id="collapsable-nav" class="collapse navbar-collapse">
+           <ul id="nav-list" class="nav navbar-nav navbar-right">
+            <li>
+              <a href="#">
+                <span class="glyphicon glyphicon-home"></span><br class="hidden-xs"> Home</a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="glyphicon glyphicon-list-alt"></span><br class="hidden-xs"> Table</a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="glyphicon glyphicon-info-sign"></span><br class="hidden-xs"> About</a>
+            </li>
+			<li>
+              <!--<a href="#"> -->
+              <a href="mailto:climann2@cisco.com">
+                <span class="glyphicon glyphicon-envelope"></span><br class="hidden-xs"> Email</a>
+            </li>
+            <li>
+              <!--<a href="#"> -->
+              <a target="_blank" href="http://imapex.io">
+                <span class="glyphicon glyphicon-link"></span><br class="hidden-xs"> imapex</a>
+            </li>
+            <!--
+            <li id="phone" class="hidden-xs">
+              <a href="tel:412-302-4568">
+              <a href="mailto:climann2@cisco.com">
+                <span>EMAIL Us</span></a><div>* Let us know what you think</div>
+            </li>
+            -->
+          </ul><!-- #nav-list -->
+        </div><!-- .collapse .navbar-collapse -->
+      </div><!-- .container -->
+    </nav><!-- #header-nav -->
+ </header> 
+
+
+<div class="container" id="box2"></div>
+<!-- table -->
+<div class="container">
+    <table>
+        <thead>
+            <tr >
+                <th>Type</th>
+                <th>Device</th>
+                <th>Temp</th>
+                <th>Condition</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+          <tbody>
+                <tr>
+                {% for d in devices.keys() %}
+                    <td align="center">{{devices[d]['type']}}</td>
+                    <td align="center">{{d}}</td>
+                    <td align="center">{{devices[d]['temp']}}</td>
+                    <td align="center">{{devices[d]['condition']}}</td>
+                    <td align="center">{{devices[d]['timestamp']}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+    </table>
+</div>
+
+<div class="container" id="box2"></div>
+<div class="container" align="left">
+<!-- TEMPERATURE LEGEND --> 
+    <!--<p class="style"> Temperature Conditions </p> 
+    <figure>
+        <img HEIGHT="45" WIDTH="30" SRC="../static/Cisco_ACI_Icons_RED.gif" alt="Cisco_ACI_Icons_RED"/>
+        <figcaption>HIGH</figcaption>
+        <figcaption><font color="red">60&degc or higher</font></figcaption>
+    </figure>
+   
+    <figure>
+        <img HEIGHT="45" WIDTH="30" SRC="../static/Cisco_ACI_Icons_YELLOW.gif" alt="Cisco_ACI_Icons_YELLOW"/>
+        <figcaption>ELEVATED</figcaption>
+        <figcaption><font color="#ffce00">59&degc to 49&degc</font></figcaption>
+    </figure>
+
+    <figure>
+        <img HEIGHT="45" WIDTH="30" SRC="../static/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_GREEN"/>
+        <figcaption>NORMAL</figcaption>
+        <figcaption><font color="green">48&degc or lower</font></figcaption>
+    </figure>
+</div>
+-->
+
+<!-- Draggable Content -->
+
+<div id="container">
+             {% for d in devices.keys() %}
+                   {% set condition = devices[d].condition %}
+                   {% set temp = devices[d].temp %}
+                    {% if condition == 'high' %}
+                        <p></p>
+                        <p><IMG id=red HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_RED.gif" alt="Cisco_ACI_Icons_RED"><b>{{d}} : <font color="red">{{devices[d]['temp']}}&degc</font></b> </p>
+                        <!--  <ln>{{devices[d]['temp']}} </ln> -->
+                    {% elif condition == 'elevated' %}
+                        <p></p>
+                        <p><IMG id=yellow HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_YELLOW.gif" alt="Cisco_ACI_Icons_YELLOW"><b>{{d}} : <font color="#ffce00">{{devices[d]['temp']}}&degc</font></b> </p>
+                        <!--  <ln>{{devices[d]['temp']}} </ln> -->
+                    {% else %}
+                        <!-- <p>{{d}} :  {{devices[d]['temp']}} &degc <IMG HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_GREEN"></p> -->
+                        <p></p>
+                        <div draggable="true">
+                        <p><IMG id="green" HEIGHT="45" WIDTH="30" SRC="/static/Cisco_ACI_Icons_GREEN.gif" alt="Cisco_ACI_Icons_GREEN"><b>{{d}} : <font color="green">{{devices[d]['temp']}}&degc</font></b>   </p>
+                        <!--  <ln>{{devices[d]['temp']}} </ln> -->
+                        </div>
+
+                    {% endif %}
+
+             {% endfor %}
+             </div>
+
+
+</div>
+<div class="container" id="box2"></div>
+
+<!-- <canvas></canvas>  -->
+<canvas class="bgrepeat"></canvas>
+
+<!-- END OF PAGE -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!-- this script is what changes background color in table row -->
+<script>
+    $(document).ready(function(){
+        $("tr:contains(high)").css("background-color", "#ff3232");
+        $("tr:contains(high)").css("color", "#990000");
+        /*$("tr:contains(high)").css("color", "#d9534f");*/
+        $("tr:contains(elevated)").css("background-color", "#FFFACD");
+        /*$("tr:contains(elevated)").css("color", "#ffff7f");*/
+        $("tr:contains(normal)").css("background-color", "#90EE90");
+        $("tr:contains(normal)").css("color", "#2E8B57");
+     });
+</script>
+<!-- jQuery (Bootstrap JS plugins depend on it) -->
+<script src="static/js/jquery-2.1.4.min.js"></script>
+<script src="static/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/script.js"></script>
+</body>
+</html>
