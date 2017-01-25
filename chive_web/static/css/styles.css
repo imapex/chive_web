@@ -254,8 +254,6 @@ only screen and (max-width: 760px),
 
   }
 
-
-
 div#heatMap.custom-design {
   width: 700px;
   height: 700px;
@@ -273,7 +271,6 @@ div#heatMap.custom-design {
   transform: translate( -50%, -50%);
   transform-origin: center center;
 }
-
 .scaleable-wrapper {
  padding: 20px;
   resize: both;
