@@ -285,11 +285,23 @@ for(var i=0 ; i<count; i++){
         <script>
         function redoMap(i){
              var heatmapInstance = h337.create({
-                 container: document.getElementById('heatMap')
+                 container: document.getElementById('heatMap'),
+                 radius: 200,
+                 maxOpacity: .5,
+                 minOpacity: 0,
+                 blur: .85,
+
+                 gradient: {
+                   // enter n keys between 0 and 1 here
+                   // for gradient color customization
+                   '.15': 'blue',
+                   '.35': 'yellow',
+                   '.7': 'red'
+                   }
              });
              var Data = {
              min: 0,
-             max: 50,
+             max: 70,
 
              data: [{x: xArray[i], y: yArray[i], value: tempArray[i]}] // temp is a variable from above
              };
