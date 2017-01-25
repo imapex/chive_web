@@ -115,6 +115,15 @@ li { /* changing size of text under icons */
     position: relative;
 }
 
+test {
+      float: left;
+   margin: 10px;
+   padding: 10px;
+   max-width: 300px;
+   height: 300px;
+   border: 1px solid black;
+   }
+
 figure {
     display: inline-block;
     text-align: center;
@@ -271,6 +280,7 @@ div#heatMap.custom-design {
   transform: translate( -50%, -50%);
   transform-origin: center center;
 }
+
 .scaleable-wrapper {
  padding: 20px;
   resize: both;
@@ -278,4 +288,5 @@ div#heatMap.custom-design {
   background: #558da9;
   height: 800px;
 }
+
 
