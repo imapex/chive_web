@@ -7,7 +7,7 @@
  * :: 2016-09-05 01:16
  */
 ;(function (name, context, factory) {
-  //console.log("in Heatmap.js");
+  console.log("in Heatmap.js");
   // Supports UMD. AMD, CommonJS/Node.js and browser context
   if (typeof module !== "undefined" && module.exports) {
     module.exports = factory();
@@ -21,7 +21,7 @@
 
 // Heatmap Config stores default values and will be merged with instance config
 var HeatmapConfig = {
-  defaultRadius: 60,
+  defaultRadius: 40,
   defaultRenderer: 'canvas2d',
   defaultGradient: { 0.25: "rgb(0,0,255)", 0.55: "rgb(0,255,0)", 0.85: "yellow", 1.0: "rgb(255,0,0)"},
   defaultMaxOpacity: 1,
@@ -157,7 +157,7 @@ var Store = (function StoreClosure() {
     setData: function(data) {
       var dataPoints = data.data;
       var pointsLen = dataPoints.length;
-//console.log(data);
+console.log(data);
 
       // reset data arrays
       this._data = [];
