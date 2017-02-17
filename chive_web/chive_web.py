@@ -20,8 +20,6 @@ def index():
         # put the data in JSON format
         devices = json.loads(response.text)
         # render data to webpage
-        #return render_template('device_info.html',
-        #                       title='CHIVE : Cisco Heat Indication & Visualization Engine', devices=devices)
         return render_template('index.html',
                            title='CHIVE : Cisco Heat Indication & Visualization Engine', devices=devices)
 
