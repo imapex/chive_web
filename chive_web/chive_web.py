@@ -11,7 +11,6 @@ app = Flask(__name__)
 @app.route('/info')
 def index():
 
-    #url = 'http://imapex-chive-clintmann-app.green.browndogtech.com/device'
     url = 'http://imapex-chive-3pings-app.green.browndogtech.com/device'
     headers = {"Content-Type": "application/json"}
 
@@ -30,4 +29,5 @@ def index():
         print "Problem getting data...trying again..."
         pass
 
-app.run(debug=True, host='0.0.0.0', port=80)
+
+app.run(debug=False, host='0.0.0.0', port=80)
