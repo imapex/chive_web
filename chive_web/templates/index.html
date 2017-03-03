@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<meta charset="utf-8">
+<!-- CHANGE TABLE VIEW FOR SMALL DEVICES -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>CHIVE 2.0</title>
+<!-- REFRESH EVERY 30 SECONDS -->
+    <meta http-equiv="refresh" content="30">
+<!-- link to Google Fonts -->
+	<link href="static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="static/css/styles.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Orbitron|Roboto" rel="stylesheet">
+<!-- FOR JQUERY IN DROPDOWN -->
+    <script src="static/js/jquery-2.1.4.min.js"></script>
+	</head>
+<body>
+<!-- NAVIGATION BAR -->
+ <header>
+ 	<nav id="header-nav" class="navbar navbar-default">
+ 		<div class="container">
+    		<div class="navbar-header">
+         		<a href="http://imapex-chive-clintmann-web.green.browndogtech.com" class="pull-left visible-md visible-lg">
+         		<div class="glyphicon glyphicon-fire"></div>
+          		</a>
+
+        		<div class="navbar-brand">
+          			<a href="http://imapex-chive-clintmann-web.green.browndogtech.com"><h1>C H I V E</h1></a>
+          			<p>
+          			<span>Cisco Heat Indication & Visualization Explorer</span>
+          			</p>
+				</div><!-- .navbar-brand -->
+
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsable-nav" aria-expanded="false">
+        			<span class="sr-only">Toggle navigation</span>
+        			<span class="icon-bar"></span>
+        			<span class="icon-bar"></span>
+        			<span class="icon-bar"></span>
+      			</button>
+			</div><!-- .navbar-header -->
+
+		<div id="collapsable-nav" class="collapse navbar-collapse">
+           <ul id="nav-list" class="nav navbar-nav navbar-right">
+            <li>
+              <a href="http://imapex-chive-clintmann-web.green.browndogtech.com">
+                <span class="glyphicon glyphicon-home"></span><br class="hidden-xs"> Home</a>
+            </li>
+            <li>
+              <a href="#table">
+                <span class="glyphicon glyphicon-list-alt"></span><br class="hidden-xs"> Table</a>
+            </li>
+            <li>
+              <a href="#heatMap">
+                <span class="glyphicon glyphicon-picture"></span><br class="hidden-xs"> Map</a>
+            </li>
+			<li>
+              <a href="mailto:climann2@cisco.com">
+                <span class="glyphicon glyphicon-envelope"></span><br class="hidden-xs"> Email</a>
+            </li>
+            <li>
+              <a target="_blank" href="http://imapex.io">
+                <span class="glyphicon glyphicon-link"></span><br class="hidden-xs"> imapex</a>
+            </li>
+          </ul><!-- #nav-list -->
+        </div><!-- .collapse .navbar-collapse -->
+      </div><!-- .container -->
+    </nav><!-- #header-nav -->
+ </header>
+<!-- BLUE LINE TO SEPARATE CONTENT -->
+<div class="box2"></div>
+<!-- TABLE -->
+<div id="table" class="container">
+    <table>
+        <thead>
+            <tr >
+                <th>Type</th>
+                <th>Device</th>
+                <th>Temp</th>
+                <th>Condition</th>
+                <th>Timestamp</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+          <tbody>
+                <script>
+                        var count=0;        // Variable to count devices //
+                        var devArray = [];  // Create Array to hold device name //
+                        var tempArray = []; // Create Array to hold temperatures //
+                </script>
+                <tr>
+                    {% for d in devices.keys() %}
+                        {% set condition = devices[d].condition %}
+                        {% set dev = d %}
+                        {% set temp = devices[d].temp %}
+                    <script>
+                        // Create an array of device names //
+                        var device = "{{dev}}"; // String //
+                        var temp = {{temp}};    // Integer //
+
+                        devArray.push(device);
+                        tempArray.push(temp);
+                    </script>
+                            <td align="center">{{devices[d]['type']}}</td>
+                            <td align="center">{{d}}</td>
+                            <td align="center">{{devices[d]['temp']}}</td>
+                            <td align="center">{{devices[d]['condition']}}</td>
+                            <td align="center">{{devices[d]['timestamp']}}</td>
+                            <td align="center"> <select id="dropdown" class="location">
+                                                <option id="default" value="Select">Select...</option>
+                                                <option id="rack1" value="Rack1">Rack 1</option>
+                                                <option id="rack2" value="Rack2">Rack 2</option>
+                                                <option id="rack3" value="Rack3">Rack 3</option>
+                                                <option id="rack4" value="Rack4">Rack 4</option>
+                                                <option id="rack5" value="Rack5">Rack 5</option>
+                                                <option id="rack6" value="Rack6">Rack 6</option>
+                                                <option id="rack7" value="Rack7">Rack 7</option>
+                                                <option id="rack8" value="Rack8">Rack 8</option>
+                                                <option id="rack10" value="Rack10">Rack 10</option>
+                                                <option id="rack11" value="Rack11">Rack 11</option>
+                                                <option id="rack13" value="Rack13">Rack 13</option>
+                                                <option id="rack14" value="Rack14">Rack 14</option>
+                                                </td>
+                    <!-- INCREMENT COUNTER ONCE FOR EACH DEVICE -->
+                    <script>
+                        count++
+                    </script>
+                </tr>
+                    {% endfor %}
+          </tbody>
+    </table>
+</div>
+
+<!-- GET CHOICE FROM DROPDOWN MENU  -->
+<script>
+var rack = [];      // Create Array to hold the choice of rack location //
+var xArray = [];    // Create Arrays to hold x coordinate value based on rack location //
+var yArray = [];    // Create Arrays to hold y coordinate value based on rack location //
+
+// ASSIGN A UNIQUE ID //
+$(document).ready(function(){
+for(var i=0 ; i<count; i++){
+    $('#dropdown').each(function(){                   // Assign <select id="dropdown"> a unique id //
+    $(this).attr('id', $(this).attr('id') + i);       // Give it a unique id //
+    }); // END .each
+} // END FOR LOOP //
+
+// LOCAL STORAGE //
+    $('.location').change(function() {
+    localStorage.setItem(this.id, this.value);
+    location.reload();
+    }).val(function() {
+    return localStorage.getItem(this.id)
+});
+
+// FILL ARRAY WITH DROPDOWN CHOICES //
+for(var i=0 ; i<count; i++){
+    var value = $( "#dropdown"+i ).val();
+    rack[i]=value;
+    //console.log(rack);
+} // END FOR LOOP //
+
+//
+for(var i=0 ; i<count; i++){
+   var loc = rack[i];  // Location variable //
+
+    if(loc=="Rack1"){
+        xArray[i]=155;
+        yArray[i]=255;
+        redoMap(i);
+    }
+    else if (loc=="Rack2"){
+        xArray[i]=155;
+        yArray[i]=355;
+        redoMap(i);
+    }
+    else if (loc=="Rack3"){
+        xArray[i]=155;
+        yArray[i]=455;
+        redoMap(i);
+    }
+    else if (loc=="Rack4"){
+        xArray[i]=155;
+        yArray[i]=555;
+        redoMap(i);
+    }
+    else if (loc=="Rack5"){
+        xArray[i]=355;
+        yArray[i]=255;
+        redoMap(i);
+    }
+    else if (loc=="Rack6"){
+        xArray[i]=355;
+        yArray[i]=355;
+        redoMap(i);
+    }
+    else if (loc=="Rack7"){
+        xArray[i]=355;
+        yArray[i]=455;
+        redoMap(i);
+    }
+    else if (loc=="Rack8"){
+        xArray[i]=355;
+        yArray[i]=555;
+        redoMap(i);
+    }
+    else if (loc=="Rack10"){
+        xArray[i]=555;
+        yArray[i]=255;
+        redoMap(i);
+    }
+    else if (loc=="Rack11"){
+        xArray[i]=555;
+        yArray[i]=355;
+        redoMap(i);
+    }
+    else if (loc=="Rack13"){
+        xArray[i]=555;
+        yArray[i]=455;
+        redoMap(i);
+    }
+    else if (loc=="Rack14"){
+        xArray[i]=555;
+        yArray[i]=555;
+        redoMap(i);
+    }
+    else{                  // NOTHING IN DROPDOWN - SHOULD NEVER GET HERE //
+        xArray[i]=100;
+        yArray[i]=50;
+    }
+}
+});
+ </script>
+
+<!-- MOUSE COORDINATE JAVASCRIPT - ONLY NEEDED TO HELP SETTING UP NEW BACKGROUND FLOOR MAP-->
+<!--
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#heatMap").mousemove(function(event){
+            var relX = event.pageX - $(this).offset().left;
+            var relY = event.pageY - $(this).offset().top;
+            var relBoxCoords = "(" + relX + "," + relY + ")";
+            $(".mouse-cords").text(relBoxCoords);
+            //console.log(relBoxCoords);
+           // $("span").text(relBoxCoords);
+           $("h5").text(relBoxCoords);
+        });
+    });
+</script>
+-->
+
+<!-- BLUE LINE TO SEPARATE CONTENT -->
+<div class="box2"></div>
+
+<!-- CONTAINER TO COLLECT FORM CONTENT - HIDE IF NOT POSITIONING FOR A NEW FLOOR PLAN-->
+<!--
+<div class="container" >
+    <div  id="formName">
+        <h4>View Mouse Coordinates on  HeatMap</h4>
+  <h6>Useful when setting up a new background image and determining rack location</h6>
+  <div  class="panel-group">
+    <div class="panel panel-default">
+      <div class="panel-heading" style="background-color:#558da9" >
+        <h4 class="panel-title">
+          <a data-toggle="collapse" href="#collapse1" style="color:#FFFFFF;text-decoration:none" ><font face="Roboto" color="#FFFFFF"><b>Coordinates</b></font></a>
+            <a data-toggle="collapse" class="glyphicon glyphicon-chevron-down" href="#collapse1" style="color:#FFFFFF;text-decoration:none"></a>
+        </h4>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse">
+          <div id="panel-body" class="panel-body">
+            <p> The Mouse is at coordinates: <h5></h5>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- WHITE LINE TO SEPARATE CONTENT -->
+<div class="box3"></div>
+
+<!-- CREATE HEATMAP -->
+<div class="scaleable-wrapper">
+    <div class="custom-design" id="heatMap">
+        <script src="static/js/heatmap.js"></script>
+        <script>
+        function redoMap(i){
+             var heatmapInstance = h337.create({
+                 container: document.getElementById('heatMap'),
+                 radius: 200,
+                 maxOpacity: .5,
+                 minOpacity: 0,
+                 blur: .85,
+
+                 gradient: {
+                   // enter n keys between 0 and 1 here
+                   // for gradient color customization
+                   '.15': 'blue',
+                   '.35': 'yellow',
+                   '.7': 'red'
+                   }
+             });
+             var Data = {
+             min: 0,
+             max: 70,
+
+             data: [{x: xArray[i], y: yArray[i], value: tempArray[i]}] // temp is a variable from above
+             };
+
+             heatmapInstance.setData(Data);
+
+            }// END FUNCTION redoMap() //
+         </script>
+    </div>
+</div>
+
+<!-- WHITE LINE TO SEPARATE CONTENT -->
+<div class="box3"></div>
+<!--</div>-->
+<!-- END OF CONTENT ON PAGE -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!-- this script is what changes background color in table row -->
+<script>
+    $(document).ready(function(){
+        $("tr:contains(high)").css("background-color", "#ff3232");
+        $("tr:contains(high)").css("color", "#990000");
+        $("tr:contains(elevated)").css("background-color", "#FFFACD");
+        $("tr:contains(normal)").css("background-color", "#90EE90");
+        $("tr:contains(normal)").css("color", "#2E8B57");
+    });
+</script>
+<!-- jQuery (Bootstrap JS plugins depend on it) -->
+<script src="static/js/jquery-2.1.4.min.js"></script>
+<script src="static/js/bootstrap.min.js"></script>
+</body>
+</html>
